@@ -4,7 +4,9 @@ export interface User {
   lastName: string;
   email: string;
   apiKey: string;
-  role: 'user' | 'admin';
+  role: "user" | "admin";
+  idrole: number;
+  password: string;
 }
 
 export interface SensorData {
@@ -15,7 +17,7 @@ export interface SensorData {
 
 export interface Accident {
   id: number;
-  status: 'up' | 'being resolved' | 'resolved';
+  status: "up" | "being resolved" | "resolved";
   accidentDate: string;
   resolutionStartDate?: string;
   resolutionDate?: string;

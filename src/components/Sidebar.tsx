@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, AlertTriangle, Users, LogOut } from 'lucide-react';
-import { useAuthStore } from '../store/authStore';
-import { accidentService } from '../services/api';
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { LayoutDashboard, AlertTriangle, Users, LogOut } from "lucide-react";
+import { useAuthStore } from "../store/authStore";
+import { accidentService } from "../services/api";
 
 export const Sidebar = () => {
   const { user, logout } = useAuthStore();
@@ -11,7 +11,9 @@ export const Sidebar = () => {
   useEffect(() => {
     const checkAccidents = async () => {
       const accidents = await accidentService.getAccidents();
-      setHasActiveAccident(accidents.some(accident => accident.status === 'up'));
+      setHasActiveAccident(
+        accidents.some((accident) => accident.status === "up")
+      );
     };
 
     checkAccidents();
@@ -24,13 +26,13 @@ export const Sidebar = () => {
       <div className="mb-8">
         <h1 className="text-xl font-bold">IoT Dashboard</h1>
       </div>
-      
+
       <nav className="space-y-2">
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
             `flex items-center space-x-2 p-2 rounded-lg ${
-              isActive ? 'bg-gray-800' : 'hover:bg-gray-800'
+              isActive ? "bg-gray-800" : "hover:bg-gray-800"
             }`
           }
         >
@@ -42,12 +44,15 @@ export const Sidebar = () => {
           to="/accidents"
           className={({ isActive }) =>
             `flex items-center space-x-2 p-2 rounded-lg ${
-              isActive ? 'bg-gray-800' : 'hover:bg-gray-800'
-            } ${hasActiveAccident ? 'animate-burning' : ''}`
+              isActive ? "bg-gray-800" : "hover:bg-gray-800"
+            } ${hasActiveAccident ? "animate-burning" : ""}`
           }
         >
-          <AlertTriangle size={20} className={hasActiveAccident ? 'text-red-500' : ''} />
-          <span className={hasActiveAccident ? 'font-bold text-red-500' : ''}>
+          <AlertTriangle
+            size={20}
+            className={hasActiveAccident ? "text-red-500" : ""}
+          />
+          <span className={hasActiveAccident ? "font-bold text-red-500" : ""}>
             Accidents
             {hasActiveAccident && (
               <span className="ml-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full animate-pulse">
@@ -57,12 +62,12 @@ export const Sidebar = () => {
           </span>
         </NavLink>
 
-        {user?.role === 'admin' && (
+        {user?.role === "admin" && ( // 2 is admin
           <NavLink
             to="/users"
             className={({ isActive }) =>
               `flex items-center space-x-2 p-2 rounded-lg ${
-                isActive ? 'bg-gray-800' : 'hover:bg-gray-800'
+                isActive ? "bg-gray-800" : "hover:bg-gray-800"
               }`
             }
           >
