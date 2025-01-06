@@ -110,6 +110,7 @@ export const authService = {
       if (loginResponse.status === 200) {
         const { id } = loginResponse.data; // Manually provide the ID for the next call (update this if necessary)
         console.log(id);
+        localStorage.setItem("userConnected", id);
 
         // Second API call: Retrieve the user details
         const userResponse = await axios.get(
